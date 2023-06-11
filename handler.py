@@ -22,6 +22,12 @@ def run_command(command):
             os.system("pm2 log '@wechat-push'")
         elif command == "flush":
             os.system("pm2 flush")
+        elif command == "show":
+            run_command("show-server-config")
+        elif command == "flush-restart-log":
+            run_command("flush")
+            run_command("restart")
+            run_command("log")
         elif command == "config-index":
             os.system(f"curl -o {INDEX_FILE_PATH} {INDEX_SOURCE_URL}")
         elif command == "config-server":
@@ -69,7 +75,7 @@ def run_command(command):
 def main():
     while True:
         command = input("Enter a command (or 'quit' to exit): ")
-        if command == "quit":
+        if command == "quit" or command == "q":
             break
         run_command(command)
 
