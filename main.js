@@ -63,7 +63,7 @@ const main = () => {
   if (process.env.APP_MODE === 'params-log') {
     mainForTest()
   } else if (process.env.APP_MODE === 'server') {
-    console.log('======【定时推送服务已启动, enjoying it】======')
+    console.log('======【定时推送服务已启动, enjoying it】======!!!!')
     console.log(`目前定时推送的配置为：【${cronTime}】`)
     schedule.scheduleJob(cronTime, () => {
       mainForProd()
