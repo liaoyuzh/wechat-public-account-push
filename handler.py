@@ -4,7 +4,7 @@ import subprocess
 COMMON_PATH = os.path.expanduser("~/wechat-public-account-push")
 INDEX_FILE_PATH = os.path.join(COMMON_PATH, "config", "index.cjs")
 INDEX_SOURCE_URL = "https://gist.githubusercontent.com/liaoyuzh/5d53eb93afbc03d03e3c8aaa830fab2f/raw/8e86209c4033b048d5b37c54671b96f4f353a84e/gistfile1.txt"
-CONFIG_SERVER_FILE_PATH = os.path.join(COMMON_PATH, "config", "config-server.js")
+CONFIG_SERVER_FILE_PATH = os.path.join(COMMON_PATH, "config", "server-config.js")
 CONFIG_SERVER_SOURCE_URL = "https://gist.githubusercontent.com/liaoyuzh/95b108b2f15e16d9dd60092d0772b77a/raw/dc2af2eb4988e7ef358e9ee3ecf44536b1d1f51e/gistfile1.txt"
 
 def run_command(command):
