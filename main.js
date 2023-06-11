@@ -6,7 +6,7 @@ import {
   getCallbackTemplateParams,
 } from './src/services/index.js'
 import config from './config/exp-config.js'
-import cornTime from './config/server-config.js'
+import cronTime from './config/server-config.js'
 import mainForTest from './main-for-test.js'
 import { RUN_TIME_STORAGE } from './src/store/index.js'
 
@@ -64,8 +64,8 @@ const main = () => {
     mainForTest()
   } else if (process.env.APP_MODE === 'server') {
     console.log('======【定时推送服务已启动, enjoying it】======')
-    console.log(`目前定时推送的配置为：【${cornTime}】`)
-    schedule.scheduleJob(cornTime, () => {
+    console.log(`目前定时推送的配置为：【${cronTime}】`)
+    schedule.scheduleJob(cronTime, () => {
       mainForProd()
     })
   } else if (process.env.APP_MODE === 'prod') {
