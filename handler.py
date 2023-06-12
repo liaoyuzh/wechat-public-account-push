@@ -14,12 +14,21 @@ def update_config(time, use_utc8=True):
     else:
         delta_time = timedelta(seconds=10)
 
-    hours, minutes, seconds = time.split(":")  # Add seconds variable
+    time_parts = time.split(":")
+    if len(time_parts) == 2:
+        hours, minutes = time_parts
+        seconds = "00"  # Set seconds to default value
+    elif len(time_parts) == 3:
+        hours, minutes, seconds = time_parts
+    else:
+        print("Please provide the time in the format HH:MM or HH:MM:SS.")
+        return
+
     current_time = datetime.utcnow()
     converted_time = current_time.replace(hour=int(hours), minute=int(minutes), second=int(seconds)) + delta_time
     converted_hours = str(converted_time.hour).zfill(2)
     converted_minutes = str(converted_time.minute).zfill(2)
-    converted_seconds = str(converted_time.second).zfill(2)  # Store converted seconds
+    converted_seconds = str(converted_time.second).zfill(2)
     schedule = f"{converted_seconds} {converted_minutes} {converted_hours} * * *"
     with open(CONFIG_SERVER_FILE_PATH, "w") as file:
         file.write("// 此时间为每天的 {}:{}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes, converted_seconds))
@@ -75,7 +84,7 @@ def run_command(command):
             parts = command.split()
 
             if len(parts) == 1:
-                current_time = datetime.now().strftime("%H:%M")
+                current_time = datetime.now().strftime("%H:%M:%S")
                 print("Current system time: ", current_time)
                 update_config(current_time, use_utc8=False)
 
