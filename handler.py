@@ -8,6 +8,29 @@ INDEX_SOURCE_URL = "https://gist.githubusercontent.com/liaoyuzh/5d53eb93afbc03d0
 CONFIG_SERVER_FILE_PATH = os.path.join(COMMON_PATH, "config", "server-config.js")
 CONFIG_SERVER_SOURCE_URL = "https://gist.githubusercontent.com/liaoyuzh/95b108b2f15e16d9dd60092d0772b77a/raw/dc2af2eb4988e7ef358e9ee3ecf44536b1d1f51e/gistfile1.txt"
 
+def update_config(time, use_utc8=True):
+    if use_utc8:
+        delta_time = -timedelta(hours=8)
+    else:
+        delta_time = timedelta(minutes=1)
+
+    hours, minutes = time.split(":")
+    current_time = datetime.utcnow()
+    converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) + delta_time
+    converted_hours = str(converted_time.hour).zfill(2)
+    converted_minutes = str(converted_time.minute).zfill(2)
+    schedule = f"0 {converted_minutes} {converted_hours} * * *"
+    with open(CONFIG_SERVER_FILE_PATH, "w") as file:
+        file.write("// 此时间为每天的 {}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes))
+        file.write("// 这里的时间是中国时间 秒 分 时 日 月 年\n")
+        file.write(f"const cronTime = '{schedule}'\n")
+        file.write("export default cronTime\n")
+    print("Updated {} with the schedule: {}:{}".format(CONFIG_SERVER_FILE_PATH, converted_hours, converted_minutes))
+    # Commit and push the changes
+    subprocess.run(["git", "-C", COMMON_PATH, "add", CONFIG_SERVER_FILE_PATH])
+    subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {converted_hours}:{converted_minutes}"])
+    subprocess.run(["git", "-C", COMMON_PATH, "push"])
+
 def run_command(command):
     try:
         if command == "run":
@@ -40,24 +63,16 @@ def run_command(command):
             os.system(f"curl -o {CONFIG_SERVER_FILE_PATH} {CONFIG_SERVER_SOURCE_URL}")
         elif command.startswith("update"):
             parts = command.split()
-            if len(parts) == 2:
+
+            if len(parts) == 1:
+                current_time = datetime.now().strftime("%H:%M")
+                print("Current system time: ", current_time)
+                update_config(current_time, use_utc8=False)
+
+            elif len(parts) == 2:
                 time = parts[1]
-                hours, minutes = time.split(":")
-                current_time = datetime.utcnow()
-                converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) - timedelta(hours=8)
-                converted_hours = str(converted_time.hour).zfill(2)
-                converted_minutes = str(converted_time.minute).zfill(2)
-                schedule = f"0 {converted_minutes} {converted_hours} * * *"
-                with open(CONFIG_SERVER_FILE_PATH, "w") as file:
-                    file.write("// 此时间为每天的 {}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes))
-                    file.write("// 这里的时间是中国时间 秒 分 时 日 月 年\n")
-                    file.write(f"const cronTime = '{schedule}'\n")
-                    file.write("export default cronTime\n")
-                print("Updated {} with the schedule: {}:{}".format(CONFIG_SERVER_FILE_PATH, converted_hours, converted_minutes))
-                # Commit and push the changes
-                subprocess.run(["git", "-C", COMMON_PATH, "add", CONFIG_SERVER_FILE_PATH])
-                subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {converted_hours}:{converted_minutes}"])
-                subprocess.run(["git", "-C", COMMON_PATH, "push"])
+                update_config(time)
+
             else:
                 print("Please provide the time in the format HH:MM.")
         elif command == "show-server-config":
