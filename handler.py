@@ -1,5 +1,6 @@
 import os
 import subprocess
+from datetime import datetime, timedelta
 
 COMMON_PATH = os.path.expanduser("~/wechat-public-account-push")
 INDEX_FILE_PATH = os.path.join(COMMON_PATH, "config", "index.cjs")
@@ -24,7 +25,7 @@ def run_command(command):
             os.system("pm2 flush")
         elif command == "show":
             run_command("show-server-config")
-        elif command == "flush-restart-log":
+        elif command == "flush-restart-log" or command == "rerun":
             run_command("flush")
             run_command("restart")
             run_command("log")
@@ -40,16 +41,20 @@ def run_command(command):
             if len(parts) == 2:
                 time = parts[1]
                 hours, minutes = time.split(":")
-                schedule = f"0 {minutes} {hours} * * *"
+                current_time = datetime.utcnow()
+                converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) + timedelta(hours=8)
+                converted_hours = str(converted_time.hour).zfill(2)
+                converted_minutes = str(converted_time.minute).zfill(2)
+                schedule = f"0 {converted_minutes} {converted_hours} * * *"
                 with open(CONFIG_SERVER_FILE_PATH, "w") as file:
-                    file.write("// 此时间为每天的 {}:{} ，*为匹配任意一个\n".format(hours, minutes))
+                    file.write("// 此时间为每天的 {}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes))
                     file.write("// 这里的时间是中国时间 秒 分 时 日 月 年\n")
                     file.write(f"const cronTime = '{schedule}'\n")
                     file.write("export default cronTime\n")
-                print("Updated {} with the schedule: {}:{}".format(CONFIG_SERVER_FILE_PATH, hours, minutes))
+                print("Updated {} with the schedule: {}:{}".format(CONFIG_SERVER_FILE_PATH, converted_hours, converted_minutes))
                 # Commit and push the changes
                 subprocess.run(["git", "-C", COMMON_PATH, "add", CONFIG_SERVER_FILE_PATH])
-                subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {hours}:{minutes}"])
+                subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {converted_hours}:{converted_minutes}"])
                 subprocess.run(["git", "-C", COMMON_PATH, "push"])
             else:
                 print("Please provide the time in the format HH:MM.")
@@ -81,4 +86,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
