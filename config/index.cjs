@@ -13,8 +13,8 @@ const USER_CONFIG = {
   // 使用微信测试号：公众号APP_SECRET
   APP_SECRET: 'ff2c21a8136c1b36a812b2304cf97913',
 
-  PROVINCE: '江西',
-  CITY: '南昌市',
+  //PROVINCE: '江西',
+  //CITY: '南昌市',
 
   SWITCH : {
         /** 每日天气 */
