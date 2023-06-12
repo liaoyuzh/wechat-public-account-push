@@ -12,25 +12,26 @@ def update_config(time, use_utc8=True):
     if use_utc8:
         delta_time = -timedelta(hours=8)
     else:
-        #delta_time = timedelta(minutes=1)
         delta_time = timedelta(seconds=10)
 
-    hours, minutes = time.split(":")
+    hours, minutes, seconds = time.split(":")  # Add seconds variable
     current_time = datetime.utcnow()
-    converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) + delta_time
+    converted_time = current_time.replace(hour=int(hours), minute=int(minutes), second=int(seconds)) + delta_time
     converted_hours = str(converted_time.hour).zfill(2)
     converted_minutes = str(converted_time.minute).zfill(2)
-    schedule = f"0 {converted_minutes} {converted_hours} * * *"
+    converted_seconds = str(converted_time.second).zfill(2)  # Store converted seconds
+    schedule = f"{converted_seconds} {converted_minutes} {converted_hours} * * *"
     with open(CONFIG_SERVER_FILE_PATH, "w") as file:
-        file.write("// 此时间为每天的 {}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes))
+        file.write("// 此时间为每天的 {}:{}:{} ，*为匹配任意一个\n".format(converted_hours, converted_minutes, converted_seconds))
         file.write("// 这里的时间是中国时间 秒 分 时 日 月 年\n")
         file.write(f"const cronTime = '{schedule}'\n")
         file.write("export default cronTime\n")
-    print("Updated {} with the schedule: {}:{}".format(CONFIG_SERVER_FILE_PATH, converted_hours, converted_minutes))
+    print("Updated {} with the schedule: {}:{}:{}".format(CONFIG_SERVER_FILE_PATH, converted_hours, converted_minutes, converted_seconds))
     # Commit and push the changes
     subprocess.run(["git", "-C", COMMON_PATH, "add", CONFIG_SERVER_FILE_PATH])
-    subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {converted_hours}:{converted_minutes}"])
+    subprocess.run(["git", "-C", COMMON_PATH, "commit", "-m", f"Update time to {converted_hours}:{converted_minutes}:{converted_seconds}"])
     subprocess.run(["git", "-C", COMMON_PATH, "push"])
+
 
 def run_command(command):
     try:
