@@ -15,15 +15,20 @@ const USER_CONFIG = {
 
   PROVINCE: '江西',
   CITY: '南昌市',
+  
+  // Define the template IDs and user ID as global variables
+  TEMPLATE_ID: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
+  CALLBACK_TEMPLATE_ID: 'lwjuWEytjYUN0JYYvqkJAGbmoLTu6Q5h8HBkhne1mGQ',
+  USER_ID: 'oFOXb6QeNi5FKGYHK9guf-9i71AU',
 
   USERS: [
     {
       // 想要发送的人的名字
       name: 'ChronoWalker',
       // 使用微信测试号：扫码关注你的微信测试号后生成的一段字符串，在测试号后台能看到
-      id: 'oFOXb6QeNi5FKGYHK9guf-9i71AU',
+      id: USER_ID,
       // 使用微信测试号：你想对他发送的模板消息的模板ID
-      useTemplateId: '	hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
+      useTemplateId: this.TEMPLATE_ID,
       // 新历生日, 仅用作获取星座运势, 格式必须为MM-DD
       horoscopeDate: '06-15',
       festivals: [
@@ -51,13 +56,13 @@ const USER_CONFIG = {
 
 
   // 【推送完成提醒】模板id, 用来看自己有没有发送成功的那个模板
-  CALLBACK_TEMPLATE_ID: '	lwjuWEytjYUN0JYYvqkJAGbmoLTu6Q5h8HBkhne1mGQ',
+  CALLBACK_TEMPLATE_ID: CALLBACK_TEMPLATE_ID,
 
   CALLBACK_USERS: [
     {
       name: '自己',
       // 使用微信测试号：自己的微信id，扫码关注你的微信测试号后生成的一段字符串，在测试号后台能看到
-      id: 'oFOXb6QeNi5FKGYHK9guf-9i71AU',
+      id: USER_ID,
     }
   ],
 
