@@ -74,22 +74,22 @@ const USER_CONFIG = {
       // 使用微信测试号：你想对他发送的模板消息的模板ID
       //useTemplateId: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
       //useTemplateId: 'ZigcFRnS8Nmlz5hjTKRw9VIhFI_Q_gYFrMS5Pkl60ZY',
-      useTemplateId: 'ZPHZdVMdc1v9ymhEuXvrO_wkWtgDWwocSJCVLniWz04',
+      useTemplateId: 'xkoM1xoQ-F3-PXnvCiX5YLSAOevnZE0GQ0VS03i5PtY',
 
       // 新历生日, 仅用作获取星座运势, 格式必须为MM-DD
       horoscopeDate: '06-15',
       festivals: [
         // 注意：此条配置日期为阴历日期，因为`type`中 “生日” 之前有 * 符号
         // {
-        //   type: '*生日', name: '宝贝', year: '1996', date: '06-15',
+        //   type: '*生日', nam: '宝贝', year: '1996', date: '06-15',
         // },
         // 注意：此条配置日期为阳历日期，因为`type`中 “生日” 之前没有 * 符号
         {
           type: '生日', name: '宝贝', year: '1996', date: '06-12',
         },
-        // {
-        //   type: '节日', name: '相识纪念日', year: '2020', date: '09-03',
-        // },
+        {
+           type: '节日', name: '今年', year: '2020', date: '01-01',
+        },
       ],
       // 我们在一起已经有xxxx天了的配置
       customizedDateList: [
