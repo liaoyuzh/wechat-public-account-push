@@ -33,11 +33,23 @@ def update_config(time, use_utc8=True):
 
 def run_command(command):
     try:
+
         if command == "run":
             os.chdir(COMMON_PATH)
             os.system("npm run pm2start")
         if command == "clear":
             os.system("clear")
+
+        elif command == "test-run":
+            os.system("git pull")
+            run_command("update")
+            run_command("rerun")
+
+        elif command == "flush-restart-log" or command == "rerun":
+            run_command("flush")
+            run_command("restart")
+            run_command("log")
+
         elif command == "stop":
             os.system("pm2 stop '@wechat-push'")
         elif command == "restart":
@@ -50,10 +62,6 @@ def run_command(command):
             os.system("pm2 flush")
         elif command == "show":
             run_command("show-server-config")
-        elif command == "flush-restart-log" or command == "rerun":
-            run_command("flush")
-            run_command("restart")
-            run_command("log")
         elif command == "config-index":
             os.system(f"curl -o {INDEX_FILE_PATH} {INDEX_SOURCE_URL}")
         elif command == "config-server":
