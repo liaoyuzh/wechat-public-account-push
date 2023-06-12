@@ -74,7 +74,7 @@ const USER_CONFIG = {
       // 使用微信测试号：你想对他发送的模板消息的模板ID
       //useTemplateId: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
       //useTemplateId: 'ZigcFRnS8Nmlz5hjTKRw9VIhFI_Q_gYFrMS5Pkl60ZY',
-      useTemplateId: 'lUr4A6C_bKyoSBAojQ2BpCEPtfJPPoakakaj6AgLwbA',
+      useTemplateId: 'n3qnNF3DaSWiibt28E2r0CRltDI0J3k-0md37X26a0A',
 
       // 新历生日, 仅用作获取星座运势, 格式必须为MM-DD
       horoscopeDate: '06-15',
@@ -85,7 +85,7 @@ const USER_CONFIG = {
         // },
         // 注意：此条配置日期为阳历日期，因为`type`中 “生日” 之前没有 * 符号
         {
-          type: '生日', name: '宝贝', year: '1996', date: '06-12',
+          type: '生日', name: '宝贝', year: '1996', date: '06-15',
         },
         {
            type: '节日', name: '今年', year: '2020', date: '01-01',
