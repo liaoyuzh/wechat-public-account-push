@@ -1081,12 +1081,13 @@ const sendMessageByWeChatTest = async (user, templateId, wxTemplateData) => {
     }
   }
 
+  var user_info = `${user.name} ${user.id}`;
   if (res.data && res.data.errcode === 40003) {
-    console.error(`${user.name}: 推送消息失败! id填写不正确！应该填用户扫码后生成的id！要么就是填错了！请检查配置文件！`)
+    console.error(`${user_info}: 推送消息失败! id填写不正确！应该填用户扫码后生成的id！要么就是填错了！请检查配置文件！`)
   } else if (res.data && res.data.errcode === 40036) {
-    console.error(`${user.name}: 推送消息失败! 模板id填写不正确！应该填模板id！要么就是填错了！请检查配置文件！`)
+    console.error(`${user_info}: 推送消息失败! 模板id填写不正确！应该填模板id！要么就是填错了！请检查配置文件！`)
   } else {
-    console.error(`${user.name}: 推送消息失败`, res.data)
+    console.error(`${user_info}: 推送消息失败`, res.data)
   }
 
   return {
