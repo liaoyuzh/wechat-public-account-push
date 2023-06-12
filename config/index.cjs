@@ -22,7 +22,7 @@ const USER_CONFIG = {
   SWITCH : {
         /** 每日天气 */
     // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
-    weather: true,
+    weather: false,
 
     /** 节假日 */
     // 下一休息日综合提醒, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
@@ -74,7 +74,7 @@ const USER_CONFIG = {
       // 使用微信测试号：你想对他发送的模板消息的模板ID
       //useTemplateId: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
       //useTemplateId: 'ZigcFRnS8Nmlz5hjTKRw9VIhFI_Q_gYFrMS5Pkl60ZY',
-      useTemplateId: 'k92ZsWGeZZ2KfuR-58G3jm4IWNROO0hocDWeLMrnUKM',
+      useTemplateId: 'hT54xjlva0S9tCTwouNfXDhv-yu3ARmL7So_4Gu9LZA',
 
       // 新历生日, 仅用作获取星座运势, 格式必须为MM-DD
       horoscopeDate: '06-15',
