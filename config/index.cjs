@@ -15,11 +15,52 @@ const USER_CONFIG = {
 
   PROVINCE: '江西',
   CITY: '南昌市',
+
+  SWITCH : {
+        /** 每日天气 */
+    // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    weather: true,
+
+    /** 节假日 */
+    // 下一休息日综合提醒, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    holidaytts: true,
+
+    /** 每日N句 */
+    // 金山每日一句, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    CIBA: true,
+    
+    // 每日一言, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    oneTalk: true,
+    
+    // 土味情话(彩虹屁), 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    earthyLoveWords: true,
+    
+    // 朋友圈文案, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    momentCopyrighting: true,
+    
+    // 毒鸡汤, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    poisonChickenSoup: true,
+    
+    // 古诗古文, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    poetry: true,
+
+    /** 星座运势 */
+    // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    horoscope: true,
+  
+    /** 生日消息和节日消息 */
+    // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    birthdayMessage: true,
+  
+    /** 学生课表 */
+    // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
+    courseSchedule: true,
+  },
   
   // Define the template IDs and user ID as global variables
-  TEMPLATE_ID: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
-  CALLBACK_TEMPLATE_ID: 'lwjuWEytjYUN0JYYvqkJAGbmoLTu6Q5h8HBkhne1mGQ',
-  USER_ID: 'oFOXb6QeNi5FKGYHK9guf-9i71AU',
+  //TEMPLATE_ID: 'hgMxhD_lRtWtjh0BwpdELf_C7VeWdrBBnUFAs9I3W1s',
+  //CALLBACK_TEMPLATE_ID: 'lwjuWEytjYUN0JYYvqkJAGbmoLTu6Q5h8HBkhne1mGQ',
+  //USER_ID: 'oFOXb6QeNi5FKGYHK9guf-9i71AU',
 
   USERS: [
     {
