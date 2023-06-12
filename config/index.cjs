@@ -22,7 +22,7 @@ const USER_CONFIG = {
   SWITCH : {
         /** 每日天气 */
     // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
-    weather: false,
+    weather: true,
 
     /** 节假日 */
     // 下一休息日综合提醒, 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
