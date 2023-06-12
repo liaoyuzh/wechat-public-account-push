@@ -16,6 +16,9 @@ const USER_CONFIG = {
   //PROVINCE: '江西',
   //CITY: '南昌市',
 
+  PROVINCE: '北京',
+  CITY: '北京',
+
   SWITCH : {
         /** 每日天气 */
     // 填 false 则不使用，按需关闭不使用的功能可以提高运行速度
