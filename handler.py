@@ -12,7 +12,8 @@ def update_config(time, use_utc8=True):
     if use_utc8:
         delta_time = -timedelta(hours=8)
     else:
-        delta_time = timedelta(minutes=1)
+        #delta_time = timedelta(minutes=1)
+        delta_time = timedelta(seconds=10)
 
     hours, minutes = time.split(":")
     current_time = datetime.utcnow()
