@@ -785,6 +785,7 @@ export const getAggregatedData = async () => {
       color: getColor(),
     }]
     // 集成所需信息
+    console.log(constellationFortune);
     const wxTemplateParams = [
       { name: toLowerLine('toName'), value: user.name, color: getColor() },
       {
