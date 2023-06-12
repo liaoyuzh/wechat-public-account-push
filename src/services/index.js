@@ -116,6 +116,7 @@ export const getWeather = async (province, city) => {
     return {}
   }
   const url = `http://t.weather.itboy.net/api/weather/city/${cityInfo.city_code}`
+  console.log(url)
 
   const res = await axios.get(url, {
     headers: {
