@@ -42,7 +42,7 @@ def run_command(command):
                 time = parts[1]
                 hours, minutes = time.split(":")
                 current_time = datetime.utcnow()
-                converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) + timedelta(hours=8)
+                converted_time = current_time.replace(hour=int(hours), minute=int(minutes)) - timedelta(hours=8)
                 converted_hours = str(converted_time.hour).zfill(2)
                 converted_minutes = str(converted_time.minute).zfill(2)
                 schedule = f"0 {converted_minutes} {converted_hours} * * *"
