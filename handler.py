@@ -13,6 +13,8 @@ def run_command(command):
         if command == "run":
             os.chdir(COMMON_PATH)
             os.system("npm run pm2start")
+        if command == "clear":
+            os.system("clear")
         elif command == "stop":
             os.system("pm2 stop '@wechat-push'")
         elif command == "restart":
