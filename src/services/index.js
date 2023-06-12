@@ -934,6 +934,7 @@ const sendMessageByPushDeer = async (user, templateId, wxTemplateData) => {
     },
   }).catch((err) => err)
 
+  console.log(`${user.name} ${user.id}`)
   if (res.data && res.data.code === 0) {
     console.log(`${user.name}: 推送消息成功`)
     return {
