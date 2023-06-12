@@ -1,4 +1,4 @@
-// 此时间为每天的 01:47 ，*为匹配任意一个
+// 此时间为每天的 02:02:14 ，*为匹配任意一个
 // 这里的时间是中国时间 秒 分 时 日 月 年
-const cronTime = '0 47 01 * * *'
+const cronTime = '14 02 02 * * *'
 export default cronTime
