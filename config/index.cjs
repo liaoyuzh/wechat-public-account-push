@@ -68,7 +68,7 @@ const USER_CONFIG = {
   USERS: [
     {
       // 想要发送的人的名字
-      name: 'ChronoWalker',
+      name: '宝贝',
       // 使用微信测试号：扫码关注你的微信测试号后生成的一段字符串，在测试号后台能看到
       id: 'oFOXb6bx9jeqj2l1cUZe8B5WRNH8',
       // 使用微信测试号：你想对他发送的模板消息的模板ID
